@@ -1,3 +1,11 @@
-.iconfont{
-  font-size: 30px;
+.iconfont {
+  font-size: 25px;
+
+  &.icon-shouye {
+    font-size: 25px;
+  }
+
+  &.icon-fankui {
+    font-size: 30px;
+  }
 }
