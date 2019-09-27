@@ -19,7 +19,7 @@ export class IndexPage implements OnInit {
         slidesPerView: 'auto',
         centeredSlides: true,
     };
-    infiniteScroll: any;
+    infiniteScroll: any = null;
     products: any;
     errorMessage: any;
     last = false;
@@ -61,9 +61,10 @@ export class IndexPage implements OnInit {
             .subscribe(
                 data => {
                     if (data.code === 0) {
+                        this.last = data.isLast;
                         this.products = data.data;
                         if (this.infiniteScroll) {
-                            this.infiniteScroll.disabled = true;
+                            this.infiniteScroll.target.disabled = false;
                         }
                         refresher.target.complete();
                     }

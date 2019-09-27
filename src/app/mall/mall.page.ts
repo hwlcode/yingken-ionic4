@@ -50,9 +50,10 @@ export class MallPage implements OnInit {
             .subscribe(
                 data => {
                     if (data.code === 0) {
+                        this.last = data.isLast;
                         this.products = data.data;
                         if (this.infiniteScroll) {
-                            this.infiniteScroll.disabled = true;
+                            this.infiniteScroll.target.disabled = false;
                         }
                         refresher.target.complete();
                     }
