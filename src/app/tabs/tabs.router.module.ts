@@ -8,45 +8,65 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'index',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../index/index.module').then(m => m.IndexPageModule)
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'mall',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../mall/mall.module').then(m => m.MallPageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'cart',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../cart/cart.module').then(m => m.CartPageModule)
+          }
+        ]
+      },
+      {
+        path: 'message',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+                import('../message/message.module').then(m => m.MessagePageModule)
+          }
+        ]
+      },
+      {
+        path: 'profile',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+                import('../profile/profile.module').then(m => m.ProfilePageModule)
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/index',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/index',
     pathMatch: 'full'
   }
 ];

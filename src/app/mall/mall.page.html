@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+        <ion-searchbar placeholder="输入你要搜索的商品"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" pullFactor="0.5" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="list-item" size="6" *ngFor="let product of products;">
+                <ion-card (tap)="goToDetail(product)" class="item-body">
+                    <img alt="" width="100%" src="{{product?.banner.path}}" height="147"/>
+                    <p class="name">{{product?.name}}</p>
+                    <p class="price">￥<span class="red">{{product?.price}}</span>/{{product?.unit}}</p>
+                    <del class="old-price">￥{{product?.origin_price}}/{{product?.origin_price_unit}}</del>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="加载更多中..."
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
