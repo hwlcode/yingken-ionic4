@@ -1,12 +1,12 @@
 <ion-header>
     <ion-toolbar class="toolbar">
         <ion-buttons slot="secondary">
-            <ion-button>盈垦</ion-button>
+            <ion-button class="logo">盈垦</ion-button>
         </ion-buttons>
-        <ion-searchbar placeholder="输入你要搜索的商品"></ion-searchbar>
+        <ion-searchbar placeholder="输入你要搜索的商品" (keyup)="goToProductList($event)"></ion-searchbar>
         <ion-buttons slot="primary">
             <ion-avatar class="avatar">
-                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                <img src="../../assets/images/avatar.png">
             </ion-avatar>
         </ion-buttons>
     </ion-toolbar>
@@ -25,7 +25,7 @@
     <ion-grid>
         <ion-row>
             <ion-col class="list-item" size="6" *ngFor="let product of products;">
-                <ion-card (tap)="goToDetail(product)" class="item-body">
+                <ion-card (click)="goToDetail(product)" class="item-body">
                     <img alt="" width="100%" src="{{product?.banner.path}}" height="147"/>
                     <p class="name">{{product?.name}}</p>
                     <p class="price">￥<span class="red">{{product?.price}}</span>/{{product?.unit}}</p>

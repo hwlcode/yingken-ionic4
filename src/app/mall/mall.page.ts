@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../services/products.service';
 import {UtilService} from '../services/util.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-mall',
@@ -11,11 +12,13 @@ export class MallPage implements OnInit {
     infiniteScroll: any;
     products: any;
     errorMessage: any;
+    keywords: string;
     last = false;
     page = 1;
 
     constructor(public productsService: ProductsService,
-                public utilService: UtilService) {
+                public utilService: UtilService,
+                public navCtrl: NavController) {
     }
 
     async ngOnInit() {
@@ -40,7 +43,23 @@ export class MallPage implements OnInit {
     }
 
     goToDetail(product) {
+        this.navCtrl.navigateForward(['/detail'], {
+            queryParams: {
+                id: product._id
+            }
+        });
+    }
 
+    search() {
+        this.getProductList(this.keywords, 1)
+            .subscribe(data => {
+                if (data.code === 0) {
+                    this.products = data.data;
+                }
+            }, error => {
+                this.errorMessage = error;
+                console.log(error);
+            });
     }
 
     async doRefresh(refresher) {

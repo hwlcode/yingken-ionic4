@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../services/products.service';
 import {UtilService} from '../services/util.service';
+import {NavController} from '@ionic/angular';
+import {MallPage} from '../mall/mall.page';
 
 @Component({
     selector: 'app-index',
@@ -26,6 +28,7 @@ export class IndexPage implements OnInit {
     page = 1;
 
     constructor(public productsService: ProductsService,
+                public navCtrl: NavController,
                 public utilService: UtilService) {
     }
 
@@ -51,7 +54,15 @@ export class IndexPage implements OnInit {
     }
 
     goToDetail(product) {
+        this.navCtrl.navigateForward(['/detail'], {
+            queryParams: {
+                id: product._id
+            }
+        });
+    }
 
+    goToProductList($event) {
+        this.navCtrl.navigateRoot('/tabs/mall');
     }
 
     async doRefresh(refresher) {

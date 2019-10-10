@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'mall', loadChildren: './mall/mall.module#MallPageModule' },
   { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
   { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' }
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
 ];
 @NgModule({
   imports: [

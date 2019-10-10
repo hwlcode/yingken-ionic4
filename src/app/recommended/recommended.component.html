@@ -1,0 +1,15 @@
+<div class="recommended">
+    <h2 class="title">热销商品</h2>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="list-item" size="6" *ngFor="let product of products;">
+                <ion-card (click)="goToDetail(product)" class="item-body">
+                    <img alt="" width="100%" src="{{product?.banner.path}}" height="147"/>
+                    <p class="name">{{product?.name}}</p>
+                    <p class="price">￥<span class="red">{{product?.price}}</span>/{{product?.unit}}</p>
+                    <del class="old-price">￥{{product?.origin_price}}/{{product?.origin_price_unit}}</del>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

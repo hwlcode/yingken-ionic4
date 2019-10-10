@@ -1,0 +1,42 @@
+<ion-header class="detail-header">
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md" class="white"></ion-back-button>
+        </ion-buttons>
+        <ion-fab-button slot="end" size="small">
+            <span class="iconfont icon-gouwuche"></span>
+        </ion-fab-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+    <div class="img-box"><img src="{{banner}}" alt="{{title}}" class="pro-img"></div>
+    <h3 class="detail_title">{{title}}</h3>
+    <p class="price">￥<i class="red">{{price}}</i>/{{unit}}</p>
+    <del class="old-price">￥{{originPrice}}/<span class="f12">{{originPriceUnit}}</span></del>
+    <ion-item lines="none" class="pro-num">
+        <ion-label class="num-txt">购买数量：</ion-label>
+        <app-count [(ngModel)]="proNum"></app-count>
+    </ion-item>
+
+    <div class="desc">
+        <h3>商品描述</h3>
+        <p>{{desc}}</p>
+    </div>
+    <app-recommended [ngModel]="products" (productClick)="goToDetail($event)"></app-recommended>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-icon-button>
+                <span class="iconfont icon-gouwuche"></span>
+                <p>购物车</p>
+            </ion-icon-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button size="default" expand="full" fill="solid">加入购物车</ion-button>
+            <ion-button size="default" expand="full" fill="solid">立即购买</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>
+

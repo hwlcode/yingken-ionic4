@@ -1,0 +1,52 @@
+.detail-header {
+  position: fixed;
+}
+
+.toolbar {
+  --background: transparent;
+  --border-color: transparent;
+}
+
+.img-box{height: 300px; position: relative;}
+.pro-img{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%,-50%,0);
+  width: 100%;
+  max-height: 100%;
+  line-height: 100%;
+}
+.icon-gouwuche{
+  font-size: 25px;
+}
+.detail_title{
+  font-size: 20px; line-height: 20px; padding: 0 10px; margin: 15px 0; color:#555; line-height: 30px;
+}
+
+.price{padding: 0 10px; color:#555;}
+.old-price{padding: 0 10px; display: block; margin-bottom: 10px; line-height: 25px; color:#acacac
+;}
+.desc{
+  h3{font-weight: 700; margin-bottom: 10px; color:#555; padding: 0 10px;}
+  p{color:#555; line-height: 25px; padding: 0 10px; font-size: 13px;}
+  margin-bottom: 30px;
+}
+.pro-num{
+  --padding-start: 0;
+  margin: 10px 10px;
+  color: #555;
+  .num-txt{
+    --color:#555; font-size: 18px;
+  }
+}
+
+//.recommended{
+//  .title{margin-top: 15px; border-top: 1px #f2f2f2 solid; padding-top: 15px; padding-bottom: 40px;}
+//  .item-body{box-shadow: none;--background: #fff; margin: 0;border-radius: 3px;}
+//  .name { height: 52px; overflow: hidden; color:#555; padding: 10px; line-height: 20px; margin-bottom: 15px;}
+//  .price{padding: 0 10px;}
+//  .old-price{padding: 0 10px; display: block; margin-bottom: 10px; line-height: 25px; color:#acacac
+//  ;}
+//}
+

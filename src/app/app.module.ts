@@ -10,14 +10,17 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [AppComponent],
-    entryComponents: [],
+    entryComponents: [
+    ],
     imports: [
         BrowserModule, IonicModule.forRoot(),
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
     ],
     providers: [
         StatusBar,
