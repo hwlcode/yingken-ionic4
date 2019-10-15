@@ -1,0 +1,42 @@
+.icon-close {
+  font-size: 35px;
+  color: #555;
+}
+
+.login-box {
+  padding: 80px 30px 0 30px;
+}
+
+ion-item {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px #f2f2f2 solid;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.login-btn {
+  --background: #dc5d6b linear-gradient(to right, #4cdd48, #24ad20);
+  --border-radius: 4px;
+  --background-activated: #dc5d6b linear-gradient(to right, #4cdd48, #24ad20);
+  margin: 40px 0 20px 0;
+}
+
+.tips {
+  color: #898989;
+  font-size: 13px;
+}
+
+.vail-code {
+  --background: #fff;
+  --background-activated: #fff;
+  --border-color: rgba(91, 80, 96, 1);
+  --border-radius: 2px;
+  --border-style: solid;
+  --border-width: 1px;
+  --color: #5D4F61;
+  --color-activated: #5D4F61;
+  width: 100px;
+  height: 32px;
+  font-size: 15px;
+}

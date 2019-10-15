@@ -11,15 +11,18 @@
             <ion-label>商城</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="cart">
-            <span class="iconfont icon-gouwuche"></span>
-            <ion-label>购物车</ion-label>
-        </ion-tab-button>
+        <div class="cart">
+            <ion-tab-button tab="cart">
+                <span class="iconfont icon-gouwuche"></span>
+                <ion-label>购物车</ion-label>
+            </ion-tab-button>
+            <ion-badge color="danger" class="badge" *ngIf="cartNum > 0">{{cartNum}}</ion-badge>
+        </div>
 
-        <ion-tab-button tab="message">
-            <span class="iconfont icon-fankui"></span>
-            <ion-label>消息</ion-label>
-        </ion-tab-button>
+        <!--        <ion-tab-button tab="message">-->
+        <!--            <span class="iconfont icon-fankui"></span>-->
+        <!--            <ion-label>消息</ion-label>-->
+        <!--        </ion-tab-button>-->
 
         <ion-tab-button tab="profile">
             <span class="iconfont icon-account"></span>

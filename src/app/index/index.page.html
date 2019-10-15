@@ -5,7 +5,7 @@
         </ion-buttons>
         <ion-searchbar placeholder="输入你要搜索的商品" (keyup)="goToProductList($event)"></ion-searchbar>
         <ion-buttons slot="primary">
-            <ion-avatar class="avatar">
+            <ion-avatar class="avatar" (click)="login()">
                 <img src="../../assets/images/avatar.png">
             </ion-avatar>
         </ion-buttons>

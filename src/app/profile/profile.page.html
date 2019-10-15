@@ -1,9 +1,51 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="end">
+            <ion-buttons slot="primary">
+                <ion-button routerLink="/setting" class="top-icons">
+                    <span class="iconfont icon-set gay" style="margin-top: -5px;"></span>
+                </ion-button>
+                <ion-button routerLink="/message" class="top-icons">
+                    <span class="iconfont icon-fankui gay"></span>
+                </ion-button>
+            </ion-buttons>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <div class="user-msg">
+        <div class="fl-box">
+            <ion-avatar>
+                <img src="assets/images/avatar.png" alt="" width="60">
+            </ion-avatar>
+            <span class="name">代码码得很帅的小伙子</span>
+        </div>
+    </div>
+    <ion-list lines="none" class="my-space">
+        <ion-item>
+            <span class="iconfont icon-Delistingorders gay"></span>
+            <ion-label>我的订单</ion-label>
+            <ion-icon name="arrow-forward" class="gay"></ion-icon>
+        </ion-item>
+    </ion-list>
+    <ion-list lines="none" class="my-space">
+        <ion-item>
+            <span class="iconfont icon-address gay"></span>
+            <ion-label>收货地址</ion-label>
+            <ion-icon name="arrow-forward" class="gay"></ion-icon>
+        </ion-item>
+    </ion-list>
+    <ion-list lines="none" class="my-space">
+        <ion-item>
+            <span class="iconfont icon-banbenhao gay"></span>
+            <ion-label>关于我们</ion-label>
+            <ion-icon name="arrow-forward" class="gay"></ion-icon>
+        </ion-item>
+        <ion-item>
+            <span class="iconfont icon-version gay"></span>
+            <ion-label>版本</ion-label>
+            <span class="gay">1.0.0</span>
+        </ion-item>
+    </ion-list>
 </ion-content>

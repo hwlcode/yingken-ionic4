@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>cart</ion-title>
+  <ion-toolbar class="toolbar">
+    <ion-title>购物车</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <app-recommended [ngModel]="products" (productClick)="goToDetail($event)"></app-recommended>
 </ion-content>

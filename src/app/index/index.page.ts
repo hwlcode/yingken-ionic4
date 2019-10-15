@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../services/products.service';
 import {UtilService} from '../services/util.service';
-import {NavController} from '@ionic/angular';
-import {MallPage} from '../mall/mall.page';
+import {ModalController, NavController} from '@ionic/angular';
+import {Storage} from '@ionic/storage';
+import {LoginPage} from '../login/login.page';
 
 @Component({
     selector: 'app-index',
@@ -29,6 +30,8 @@ export class IndexPage implements OnInit {
 
     constructor(public productsService: ProductsService,
                 public navCtrl: NavController,
+                public storage: Storage,
+                public modalCtrl: ModalController,
                 public utilService: UtilService) {
     }
 
@@ -59,6 +62,20 @@ export class IndexPage implements OnInit {
                 id: product._id
             }
         });
+    }
+
+     login() {
+        this.storage.get('user').then(
+            async user => {
+                if (user != null) {
+                    this.navCtrl.navigateRoot('/tabs/profile');
+                } else {
+                    const loginModal = await this.modalCtrl.create({
+                        component: LoginPage
+                    });
+                    loginModal.present();
+                }
+            });
     }
 
     goToProductList($event) {

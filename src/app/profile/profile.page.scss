@@ -1,0 +1,49 @@
+.toolbar {
+  box-shadow: none;
+  --border-color: #fff;
+}
+
+.user-msg {
+  background: #fff;
+  padding: 10px 20px;
+}
+
+.my-space {
+  border-top: 8px #f6f6f6 solid;
+  //border-bottom: 8px #f6f6f6 solid;
+}
+
+.name {
+  font-size: 18px;
+  flex: 0 0 200px;
+  color: #555;
+  padding-left: 10px;
+  font-weight: 700;
+}
+
+.top-icons:focus {
+  outline: none;
+}
+
+ion-list {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #555;
+  font-size: 15px;
+
+  ion-item {
+    margin-right: 15px;
+    border-bottom: 1px #f4f4f4 solid;
+    line-height: 35px;
+    color: #5b5060;
+    font-size: 15px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    .iconfont {
+      margin-right: 10px;
+    }
+  }
+}

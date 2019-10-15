@@ -1,9 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-title>登录注册</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close" class="icon-close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <form [formGroup]="loginForm">
+        <ion-list lines="none" class="login-box">
+            <ion-item lines="none">
+                <i class="icon-user-phone"></i>
+                <ion-input placeholder="请输入手机号" formControlName="phone"></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <i class="icon-vail-code"></i>
+                <ion-input placeholder="请输入验证码" formControlName="phoneCode" maxlength="6"></ion-input>
+                <ion-button class="vail-code" [disabled]="!verifyCode.disable"
+                            (click)="getCode()">{{verifyCode.verifyCodeTips}}</ion-button>
+            </ion-item>
+            <ion-button expand="block" class="login-btn" [disabled]="!loginForm.valid" (click)="login()">快速登录
+            </ion-button>
+        </ion-list>
+    </form>
 </ion-content>

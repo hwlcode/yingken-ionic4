@@ -2,12 +2,9 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Routes, RouterModule} from '@angular/router';
-
 import {IonicModule} from '@ionic/angular';
-
 import {DetailPage} from './detail.page';
-import {CountComponent} from '../count/count.component';
-import {RecommendedComponent} from '../recommended/recommended.component';
+import {GlobalModule} from '../modules/global/global.module';
 
 const routes: Routes = [
     {
@@ -22,9 +19,10 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         RouterModule.forChild(routes),
+        GlobalModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [DetailPage, CountComponent, RecommendedComponent]
+    declarations: [DetailPage]
 })
 export class DetailPageModule {
 }

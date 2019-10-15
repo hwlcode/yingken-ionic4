@@ -3,9 +3,12 @@
         <ion-buttons slot="start">
             <ion-back-button mode="md" class="white"></ion-back-button>
         </ion-buttons>
-        <ion-fab-button slot="end" size="small">
-            <span class="iconfont icon-gouwuche"></span>
-        </ion-fab-button>
+        <div class="top-cart" slot="end">
+            <ion-fab-button size="small" (click)="goToCart()">
+                <span class="iconfont icon-gouwuche"></span>
+            </ion-fab-button>
+            <ion-badge color="danger" class="badge" *ngIf="cartNum > 0">{{cartNum}}</ion-badge>
+        </div>
     </ion-toolbar>
 </ion-header>
 
@@ -28,14 +31,15 @@
 <ion-footer>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-icon-button>
+            <ion-icon-button class="cart" (click)="goToCart()">
                 <span class="iconfont icon-gouwuche"></span>
                 <p>购物车</p>
+                <ion-badge color="danger" class="badge" *ngIf="cartNum > 0">{{cartNum}}</ion-badge>
             </ion-icon-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-button size="default" expand="full" fill="solid">加入购物车</ion-button>
-            <ion-button size="default" expand="full" fill="solid">立即购买</ion-button>
+            <ion-button size="default" color="secondary" expand="full" fill="solid" class="btn" (click)="addToCart(product)">加入购物车</ion-button>
+            <ion-button size="default" expand="full" fill="solid" class="btn" (click)="buyNow(product)">立即购买</ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-footer>

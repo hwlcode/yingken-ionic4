@@ -12,7 +12,11 @@ const routes: Routes = [
   { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
+  { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
+  { path: 'address', loadChildren: './address/address.module#AddressPageModule' },
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' }
 ];
 @NgModule({
   imports: [
