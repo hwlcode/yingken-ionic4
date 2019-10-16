@@ -63,12 +63,20 @@ export class DetailPage implements OnInit {
         );
 
         this.events.subscribe('cart:add', (cart) => {
-            this.cartNum = cart.length;
+            let n = 0;
+            cart.map(item => {
+                n += item.num;
+            });
+            this.cartNum = n;
         });
         this.storage.get('cart').then(
             cart => {
                 if (cart !== null) {
-                    this.cartNum = cart.length;
+                    let n = 0;
+                    cart.map(item => {
+                        n += item.num;
+                    });
+                    this.cartNum = n;
                 }
             }
         );
@@ -223,5 +231,8 @@ export class DetailPage implements OnInit {
 
     goToCart() {
         this.navCtrl.navigateRoot('/tabs/cart');
+    }
+
+    chooseProduct(e, product) {
     }
 }

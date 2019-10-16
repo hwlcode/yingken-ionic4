@@ -1,9 +1,42 @@
 <ion-header>
-  <ion-toolbar class="toolbar">
-    <ion-title>购物车</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-title>购物车</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="clearCart()" class="clear-cart">清空购物车</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-recommended [ngModel]="products" (productClick)="goToDetail($event)"></app-recommended>
+    <div *ngIf="cart.length == 0" class="cart-null">
+        购物车空空如也，赶快会去挑选商品吧～
+    </div>
+    <ion-list lines="none" class="list">
+        <ion-item *ngFor="let product of cart;" class="list-item">
+            <ion-thumbnail item-start>
+                <img src="{{product.product.banner.path}}">
+            </ion-thumbnail>
+            <div style="flex: 1;">
+                <h2 class="product-name">{{product.product.name}}</h2>
+                <div class="fl-box price-box">
+                    <p class="price"><i>￥{{product.product.price}}</i>/<b>{{product.product.unit}}</b>
+                        <span style="display: block; margin-top: 5px;">
+                            <del style="color: #999; font-size: 13px;">￥{{product.product.origin_price}}/<span
+                                    class="f12">{{product.product.origin_price_unit}}</span></del>
+                        </span>
+                    </p>
+                    <app-count [(ngModel)]="product.num" (click)="chooseProduct()"></app-count>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+    <app-recommended [ngModel]="products" (productClick)="goToDetail($event)"></app-recommended>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <div class="foot-price">￥<b>{{sum}}</b>元</div>
+            <ion-button size="default" expand="full" fill="solid" class="btn" (click)="buyNow(product)">去结算</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

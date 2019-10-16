@@ -1,5 +1,5 @@
 <div class="s-count">
-  <ion-button (click)="decrement()" class="btn"><span class="iconfont icon-reduce_icon"></span></ion-button>
+  <ion-button (click)="decrement()" class="btn" [disabled]="count == 0"><span class="iconfont icon-reduce_icon"></span></ion-button>
   <ion-label class="txt">{{count}}</ion-label>
   <ion-button (click)="increment()" class="btn"><span class="iconfont icon-add"></span></ion-button>
 </div>

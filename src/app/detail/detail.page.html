@@ -19,7 +19,7 @@
     <del class="old-price">￥{{originPrice}}/<span class="f12">{{originPriceUnit}}</span></del>
     <ion-item lines="none" class="pro-num">
         <ion-label class="num-txt">购买数量：</ion-label>
-        <app-count [(ngModel)]="proNum"></app-count>
+        <app-count [(ngModel)]="proNum" [myCount]="proNum"></app-count>
     </ion-item>
 
     <div class="desc">
