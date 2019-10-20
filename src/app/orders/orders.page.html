@@ -1,9 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>orders</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>订单</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-segment (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="0" mode="md">
+            <ion-label>待付款</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="1" mode="md">
+            <ion-label>待收货</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="2" mode="md">
+            <ion-label>全部</ion-label>
+        </ion-segment-button>
+    </ion-segment>
 </ion-content>

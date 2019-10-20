@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>收货地址</ion-title>
+        <ion-buttons slot="primary" *ngIf="id != null">
+            <ion-button (click)="remove()">
+                <ion-icon name="trash" class="iconfont"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+    <form [formGroup]="fromGroup">
+        <ion-list lines="none">
+            <ion-item>
+                <ion-label>收货人:</ion-label>
+                <ion-input formControlName="name" placeholder="收货人"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>手机号码:</ion-label>
+                <ion-input formControlName="phone" placeholder="手机号码"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>详细地址:</ion-label>
+                <ion-textarea type="text" formControlName="address" placeholder="详细地址"></ion-textarea>
+            </ion-item>
+        </ion-list>
+        <ion-button expand="full" [disabled]="!fromGroup.valid" (click)="update()" class="save">保存</ion-button>
+    </form>
+</ion-content>

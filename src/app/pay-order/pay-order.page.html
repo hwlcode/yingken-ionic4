@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>确认订单</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+    <ion-item detail lines="none" (click)="selectAddress()" class="address-box">
+        <div class="address">
+            <p class="position">{{address}}</p>
+            <p class="user">{{name}} {{phone}}</p>
+        </div>
+    </ion-item>
+    <ion-item lines="none" class="pay-way">
+        <ion-label>支付方式</ion-label>
+        <div slot="end">微信支付</div>
+    </ion-item>
+    <ion-list *ngIf="orders.length > 0" lines="none" class="product-list">
+        <ion-item *ngFor="let product of orders" class="list-item">
+            <ion-thumbnail item-start>
+                <img src="{{product.product.banner.path}}">
+            </ion-thumbnail>
+            <div style="flex: 1;" class="price-box">
+                <h2 class="product-name">{{product.product.name}}</h2>
+                <ion-row>
+                    <ion-col>
+                        <p text-right>x {{(product.num ? product.num : 0)}}</p>
+                    </ion-col>
+                    <ion-col col-2>
+                        <p text-right>￥<b class="red">{{((product.num ? product.num : 0) *
+                            product.product.price).toFixed(2)}}</b>元</p>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-item>
+    </ion-list>
+    <ion-item lines="none">
+        <div class="foot-price" slot="end">￥<b>{{sum}}</b>元</div>
+    </ion-item>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <div class="foot-price">￥<b>{{sum}}</b>元</div>
+            <ion-button size="default" expand="full" fill="solid" class="btn" (click)="confirmPay()" [disabled]="hasPay">提交订单</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

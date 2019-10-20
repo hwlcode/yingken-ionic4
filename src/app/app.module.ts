@@ -36,7 +36,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {provide: LocationStrategy, useClass: HashLocationStrategy}, // 解决部署后刷新404问题
+        // {provide: LocationStrategy, useClass: HashLocationStrategy}, // 解决部署后刷新404问题
     ],
     bootstrap: [AppComponent]
 })

@@ -1,9 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>setting</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>用户设置</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="save()" class="save">确定</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="content">
+    <form [formGroup]="formGroup">
+        <ion-list lines="none">
+            <ion-item>
+                <div class="label">姓名:</div>
+                <ion-input formControlName="name" placeholder="姓名"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div class="label">性别:</div>
+                <ion-select formControlName="sex" item-end cancelText="取消" okText="确定">
+                    <ion-select-option value="先生">先生</ion-select-option>
+                    <ion-select-option value="女士">女士</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <div class="label">手机号码:</div>
+                <ion-input type="text" formControlName="phone" placeholder="手机号码"></ion-input>
+            </ion-item>
+            <ion-item>
+                <div class="label">生日:</div>
+                <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY MM DD" formControlName="birth"
+                              cancelText="取消" doneText="确定"></ion-datetime>
+            </ion-item>
+        </ion-list>
+        <ion-button expand="full" (click)="logout()" class="save-btn">退出登录</ion-button>
+    </form>
 </ion-content>

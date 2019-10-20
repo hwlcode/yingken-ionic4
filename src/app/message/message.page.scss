@@ -1,0 +1,31 @@
+ion-list {
+  background: none;
+  margin-bottom: 0;
+}
+
+.message-item {
+  margin: 0 0 5px 0;
+  color: #555;
+  font-size: 13px;
+  display: block;
+  line-height: 20px;
+  padding: 10px 10px 0 10px;
+  background: #fff;
+}
+
+.font-bold {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.date {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.remove{
+  font-size: 13px;
+}
+.date-box{
+  --padding-start: 0;
+}

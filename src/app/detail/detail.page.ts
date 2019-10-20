@@ -5,6 +5,7 @@ import {UtilService} from '../services/util.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
 import {LoginPage} from '../login/login.page';
+import {OrderService} from '../services/order.service';
 
 @Component({
     selector: 'app-detail',
@@ -43,6 +44,7 @@ export class DetailPage implements OnInit {
                 public events: Events,
                 public storage: Storage,
                 public modalCtrl: ModalController,
+                public orderService: OrderService,
                 public utilService: UtilService) {
         this.activeRoute.queryParams.subscribe(params => {
             this.id = params.id;
@@ -212,27 +214,23 @@ export class DetailPage implements OnInit {
                 this.sum = product.price * this.proNum;
 
                 // 生成订单
-                // this.orderService.httpPostOrder({
-                //     products: JSON.stringify(orders),
-                //     sumPrice: this.sum,
-                //     customer: this.userId
-                // }).subscribe(res => {
-                //     if (res.code === 0) {
-                //         this.navCtrl.push(ConfirmOrderPage, {
-                //             orders: orders,
-                //             sn: res.data.no,  // 订单号 YK23423424234
-                //             no: res.data.sn   // 订单编号
-                //         });
-                //     }
-                // });
+                this.orderService.httpPostOrder({
+                    products: JSON.stringify(orders),
+                    sumPrice: this.sum,
+                    customer: this.userId
+                }).subscribe(res => {
+                    if (res.code === 0) {
+                        this.storage.set('orders', orders);
+                        this.storage.set('sn', res.data.no); // 订单号 YK23423424234
+                        this.storage.set('no', res.data.sn); // 订单编号
+                        this.navCtrl.navigateForward('/pay-order');
+                    }
+                });
             }
         }
     }
 
     goToCart() {
         this.navCtrl.navigateRoot('/tabs/cart');
-    }
-
-    chooseProduct(e, product) {
     }
 }

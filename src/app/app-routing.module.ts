@@ -16,7 +16,10 @@ const routes: Routes = [
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
   { path: 'address', loadChildren: './address/address.module#AddressPageModule' },
-  { path: 'about', loadChildren: './about/about.module#AboutPageModule' }
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'version', loadChildren: './version/version.module#VersionPageModule' },
+  { path: 'add-address', loadChildren: './add-address/add-address.module#AddAddressPageModule' },
+  { path: 'pay-order', loadChildren: './pay-order/pay-order.module#PayOrderPageModule' }
 ];
 @NgModule({
   imports: [

@@ -1,9 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>address</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>收货地址</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="addAddress()">
+                <ion-icon name="add" class="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <div *ngIf="address.length == 0" class="no-data">您还没有添加任何收货地址</div>
+    <ion-list lines="none" *ngIf="address.length > 0">
+        <ion-item *ngFor="let ad of address" class="list-item">
+            <ion-label>{{ad.address}}</ion-label>
+            <ion-buttons slot="end">
+                <ion-button class="btn red" (click)="changeAddress(ad)">修改</ion-button>
+                <ion-button class="btn" (click)="changeDefault(ad._id)">{{ad.is_default == 1 ?'默认地址': '设为默认'}}</ion-button>
+            </ion-buttons>
+        </ion-item>
+    </ion-list>
 </ion-content>

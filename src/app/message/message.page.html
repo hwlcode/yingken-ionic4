@@ -1,9 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>message</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="toolbar">
+        <ion-buttons slot="start">
+            <ion-back-button mode="md"></ion-back-button>
+        </ion-buttons>
+        <ion-title>消息</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="content">
+    <ion-refresher slot="fixed" pullFactor="0.5" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div *ngIf="showNotification">
+        <ion-list lines="none">
+            <div *ngFor="let item of items" lines="none" class="message-item">
+                <div [class.font-bold]="item.read == 0">{{item.content}}</div>
+                <ion-item class="date-box">
+                    <ion-label class="date">{{item.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</ion-label>
+                    <ion-buttons>
+                        <ion-button size="small" class="remove read" (click)="readItem(item)">{{item.read == 0 ? '未读' : '己读'}}</ion-button>
+                        <ion-button size="small" class="remove" (click)="removeItem(item)">删除</ion-button>
+                    </ion-buttons>
+                </ion-item>
+            </div>
+        </ion-list>
+    </div>
+    <div *ngIf="!showNotification" class="no-data">暂未收到任何消息</div>
 </ion-content>

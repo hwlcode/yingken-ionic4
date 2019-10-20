@@ -29,3 +29,11 @@ export class PostAddressRequest {
     is_default: string;
 }
 
+export class PostProfile {
+    userId: string;
+    name: string;
+    sex: string;
+    phone: string;
+    birth: string;
+}
+

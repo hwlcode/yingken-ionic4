@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductsService} from '../services/products.service';
 import {UtilService} from '../services/util.service';
-import {NavController} from '@ionic/angular';
+import {IonContent, NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-mall',
@@ -9,6 +9,7 @@ import {NavController} from '@ionic/angular';
     styleUrls: ['./mall.page.scss'],
 })
 export class MallPage implements OnInit {
+    @ViewChild(IonContent, {static: false}) content: IonContent;
     infiniteScroll: any;
     products: any;
     errorMessage: any;
@@ -36,6 +37,10 @@ export class MallPage implements OnInit {
                     this.utilService.showToast(error);
                     // console.log(error);
                 });
+    }
+
+    ionViewDidEnter() {
+        this.content.scrollToTop(0);
     }
 
     getProductList(keywords, page) {

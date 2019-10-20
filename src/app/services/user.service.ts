@@ -7,7 +7,7 @@ import {
     PostAddressRequest,
     PostAvatarRequest,
     PostBirthRequest,
-    PostNameRequest,
+    PostNameRequest, PostProfile,
     PostSexRequest
 } from '../../message/user.request';
 
@@ -83,5 +83,10 @@ export class UserService {
     // 获取商家信息（管理员）
     httpGetAdminId(): Observable<any> {
         return this.http.get(this.globalConfig.DOMAIN + 'get_admin_id');
+    }
+
+    // 更新profile
+    httpPostProfile(request: PostProfile): Observable<any> {
+        return this.http.post(this.globalConfig.DOMAIN + this.globalConfig.API.saveProfile, request);
     }
 }
