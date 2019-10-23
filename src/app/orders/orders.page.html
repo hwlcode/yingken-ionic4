@@ -4,19 +4,69 @@
             <ion-back-button mode="md"></ion-back-button>
         </ion-buttons>
         <ion-title>订单</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button routerLink="/" class="red-right">返回首页</ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-segment (ionChange)="segmentChanged($event)">
-        <ion-segment-button value="0" mode="md">
+<ion-content class="content">
+    <ion-segment (ionChange)="segmentChanged($event)" value="{{selected}}">
+        <ion-segment-button value="0">
             <ion-label>待付款</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="1" mode="md">
+        <ion-segment-button value="1">
             <ion-label>待收货</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="2" mode="md">
+        <ion-segment-button value="2">
+            <ion-label>己收货</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="3">
             <ion-label>全部</ion-label>
         </ion-segment-button>
     </ion-segment>
+    <div *ngIf="orders.length == 0" class="no-data">
+        没有任何订单～
+    </div>
+    <div *ngFor="let order of orders" class="order-item">
+        <ion-item class="header-item" lines="none">
+            <ion-label>{{order.sn}}</ion-label>
+            <div item-end class="date">{{order.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+        </ion-item>
+        <ion-list *ngIf="orders.length > 0" lines="none" class="product-list">
+            <ion-item *ngFor="let product of order.products;" class="list-item" lines="none">
+                <ion-thumbnail item-start>
+                    <img src="{{product.product.banner.path}}">
+                </ion-thumbnail>
+                <div style="flex: 1;" class="price-box">
+                    <h2 class="product-name">{{product.product.name}}</h2>
+                    <ion-row>
+                        <ion-col>
+                            <p text-right>x {{(product.num ? product.num : 0)}}</p>
+                        </ion-col>
+                        <ion-col col-2>
+                            <p text-right>￥<b class="red">{{((product.num ? product.num : 0) *
+                                product.product.price).toFixed(2)}}</b>元</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-item class="order-footer" lines="full">
+            <ion-label class="status">{{order.orderStatusText}}</ion-label>
+            <div class="sum" item-end>总价 <b class="red">￥{{order.sumPrice.toFixed(2)}}</b>元</div>
+        </ion-item>
+        <ion-toolbar>
+            <ion-buttons slot="primary">
+                <ion-button *ngIf="order.status == 0" (click)="goToPay(order)">继续支付</ion-button>
+                <ion-button (click)="delOrder(order._id)">删除</ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="加载更多中..."
+        ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

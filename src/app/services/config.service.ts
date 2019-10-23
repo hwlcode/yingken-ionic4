@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class ConfigService {
     DOMAIN = 'http://admin.gxyingken.com/api/';            // 后台Api地址
-
+    // DOMAIN = 'http://localhost:9527/api/';                   // dev api地址
     API = {
         getBanner: 'web/banners',
         // getProducts: 'productList',

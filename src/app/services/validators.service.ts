@@ -12,7 +12,7 @@ export class ValidatorsService {
     /*手机号码*/
     static phone = (control: FormControl) => {
         const val = (control.value || '') + '';
-        const reg = /^1[34578]\d{9}$/;
+        const reg = /^1\d{10}$/;
         const valid = reg.test(val);
         return valid ? null : {phoneValidator: true};
     };

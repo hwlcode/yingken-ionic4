@@ -8,6 +8,7 @@ import {ProductsService} from '../services/products.service';
 import {AlertController, NavController} from '@ionic/angular';
 import {MessagesService} from '../services/messages.service';
 import {PayService} from '../services/pay.service';
+import {WechatService} from '../services/wechat.service';
 
 @Component({
     selector: 'app-pay-order',
@@ -44,7 +45,8 @@ export class PayOrderPage implements OnInit {
                 public notificationService: MessagesService,
                 public payService: PayService,
                 public alertController: AlertController,
-                public activeRoute: ActivatedRoute) {
+                public activeRoute: ActivatedRoute,
+                public wechatService: WechatService) {
         this.storage.get('orders').then(orders => {
             if (orders != null) {
                 this.orders = orders;
@@ -98,7 +100,6 @@ export class PayOrderPage implements OnInit {
                 this.adminPhone = res.data.phone;
             }
         });
-
 
 
         // 公众号支付：获取code
@@ -170,7 +171,7 @@ export class PayOrderPage implements OnInit {
         this.notificationService.createNotification(opts).subscribe(
             res => {
                 if (res.code === 0) {
-                    console.log('success');
+                    // console.log('success');
                 }
             }
         );
@@ -181,7 +182,7 @@ export class PayOrderPage implements OnInit {
         this.notificationService.msgToBusiness(phone, sn).subscribe(
             data => {
                 if (data.code === 0) {
-                    console.log('success');
+                    // console.log('success');
                 }
             }
         );
@@ -192,7 +193,7 @@ export class PayOrderPage implements OnInit {
         this.ordersService.httpChangePayDate(sn).subscribe(
             data => {
                 if (data.code === 0) {
-                    console.log(data.msg);
+                    // console.log(data.msg);
                 }
             }
         );
@@ -252,25 +253,27 @@ export class PayOrderPage implements OnInit {
         this.payService.creatWxpayOrder(params, openid).subscribe(
             async res => {
                 const data = res;
-                console.log(data);
-                const alert = await this.alertController.create({
-                    header: '确认支付结果',
-                    buttons: [
-                        {
-                            text: '支付遇到问题',
-                            handler: () => {
-                                alert.dismiss();
+                this.wechatService.wexinPay(data).then(async () => {
+                    const alert = await this.alertController.create({
+                        header: '确认支付结果',
+                        buttons: [
+                            {
+                                text: '支付遇到问题',
+                                handler: () => {
+                                    this.orderQuery(alert);
+                                    // alert.dismiss();
+                                }
+                            },
+                            {
+                                text: '己完成支付',
+                                handler: () => {
+                                    this.orderQuery(alert);
+                                }
                             }
-                        },
-                        {
-                            text: '己完成支付',
-                            handler: () => {
-                                this.orderQuery(alert);
-                            }
-                        }
-                    ]
+                        ]
+                    });
+                    await alert.present();
                 });
-                await alert.present();
             },
             err => {
                 this.utilService.showToast(err);
@@ -280,16 +283,21 @@ export class PayOrderPage implements OnInit {
     orderQuery(alert) {
         const self = this;
         this.payService.orderQuery(this.sn).subscribe(data => {
-            console.log(data);
-            if (data.data.code === 200) {
-                // 通知商家发货
+            // console.log(data);
+
+            // @ts-ignore
+            if (data.return_code == 'SUCCESS') {
                 const opts = {
                     content: '您收到新的订单：' + self.sn + ' 请尽快处理！',
                     from: self.userId,
                     to: self.adminId // 管理员ID
                 };
+                // 给用户发送通知
                 self.userOrderNotification(opts);
+
+                // 通知商家发货
                 self.msgToBusiness(self.adminPhone, self.sn);
+
                 // 用户收到下单通知
                 const businessOpts = {
                     content: '您的订单：' + self.sn + ' 己经生成，我们会尽快为您发货！非常感谢您的订购，祝生活愉快！电话咨询：18078660058',
@@ -297,16 +305,29 @@ export class PayOrderPage implements OnInit {
                     to: self.userId
                 };
                 self.userOrderNotification(businessOpts);
+
                 // 改变订单状态 status=1
                 self.changeOrderStatus(self.payway);
+
                 // 获取支付时间
                 self.changePayDate(self.sn);
+
                 // 禁用按钮
                 self.hasPay = true;
             } else {
                 this.utilService.showToast(data.data.msg);
             }
             alert.dismiss();
+            this.navCtrl.navigateForward('/orders', {
+                queryParams: {
+                    selectedTab: 1
+                }
+            });
+            // 清除购物车
+            this.storage.remove('cart');
+            this.storage.remove('orders');
+            this.storage.remove('sn');
+            this.storage.remove('no');
         });
     }
 }

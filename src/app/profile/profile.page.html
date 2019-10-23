@@ -1,13 +1,14 @@
 <ion-header>
     <ion-toolbar class="toolbar">
-        <ion-buttons slot="primary">
+        <ion-buttons slot="primary" style="margin-right: 15px;">
             <ion-button routerLink="/setting" class="top-icons">
-                <span class="iconfont icon-set gay" style="margin-top: -5px;"></span>
+                <span class="iconfont icon-set gay top-btn" style="margin-top: -5px;"></span>
             </ion-button>
             <ion-button routerLink="/message" class="top-icons">
-                <span class="iconfont icon-fankui gay"></span>
+                <span class="iconfont icon-fankui gay top-btn"></span>
             </ion-button>
         </ion-buttons>
+        <ion-badge color="danger" class="badge" *ngIf="messageNum > 0">{{messageNum}}</ion-badge>
     </ion-toolbar>
 </ion-header>
 
@@ -15,9 +16,9 @@
     <div class="user-msg">
         <div class="fl-box">
             <ion-avatar>
-                <img src="assets/images/avatar.png" alt="" width="60">
+                <img src="{{avatar}}" alt="" width="60">
             </ion-avatar>
-            <span class="name">代码码得很帅的小伙子</span>
+            <span class="name">{{user?.name}}</span>
         </div>
     </div>
     <ion-list lines="none" class="my-space">

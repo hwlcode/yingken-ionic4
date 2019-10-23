@@ -1,11 +1,23 @@
 .toolbar {
   box-shadow: none;
   --border-color: #fff;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  z-index: 1000;
 }
 
 .user-msg {
   background: #fff;
   padding: 10px 20px;
+}
+
+.top-btn {
+  font-size: 30px;
 }
 
 .my-space {
@@ -19,6 +31,10 @@
   color: #555;
   padding-left: 10px;
   font-weight: 700;
+}
+
+.top-icons {
+  position: relative;
 }
 
 .top-icons:focus {

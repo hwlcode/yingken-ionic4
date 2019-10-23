@@ -63,7 +63,7 @@ export class MallPage implements OnInit {
                 }
             }, error => {
                 this.errorMessage = error;
-                console.log(error);
+                // console.log(error);
             });
     }
 

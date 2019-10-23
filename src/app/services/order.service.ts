@@ -17,8 +17,8 @@ export class OrderService {
         return this.http.get(this.config.DOMAIN + this.config.API.orderAdd + '?products=' + request.products + '&sumPrice=' + request.sumPrice + '&customer=' + request.customer);
     }
 
-    httpGetOrderById(id: string): Observable<any> {
-        return this.http.get(this.config.DOMAIN + this.config.API.orderList + '?id=' + id);
+    httpGetOrderById(id: string, page: number = 1): Observable<any> {
+        return this.http.get(this.config.DOMAIN + this.config.API.orderList + '?id=' + id + '&q=' + page);
     }
 
     httpUpdateOrderById(id: string, payWay: number): Observable<any> {

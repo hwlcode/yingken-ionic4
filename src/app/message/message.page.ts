@@ -64,7 +64,7 @@ export class MessagePage implements OnInit {
                             this.items.splice(i, 1);
                         }
                     }
-                    this.events.publish('notification:del', res.data.unReadNum);
+                    this.getUnRead();
                 }
             });
     }
@@ -75,10 +75,23 @@ export class MessagePage implements OnInit {
                 .subscribe(res => {
                     if (res.code === 0) {
                         item.read = 1;
-                        this.events.publish('notification:read', res.data.unReadNum);
+                        this.getUnRead();
                     }
                 });
         }
+    }
+
+    getUnRead() {
+        this.messageService.unReadUserNotification(this.userId)
+            .subscribe(res => {
+                if (res.code === 0) {
+                    if (res.data.length > 0) {
+                        this.events.publish('notification:read', res.data.length);
+                    } else if (res.data.length === 0) {
+                        this.events.publish('notification:read', 0);
+                    }
+                }
+            });
     }
 
     doRefresh(refresher) {

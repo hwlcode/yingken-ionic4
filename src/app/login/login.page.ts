@@ -99,7 +99,7 @@ export class LoginPage implements OnInit {
         if (this.verifyCode.disable) {
             this.userService.httpGetVerifyCode(this.loginForm.value.phone).subscribe(data => {
                 if (data.code === 'OK') {
-                    console.log(data);
+                    // console.log(data);
                 } else {
                     // this.utilService.showToast(data.msg);
                 }

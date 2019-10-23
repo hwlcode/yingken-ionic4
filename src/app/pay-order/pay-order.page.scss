@@ -1,8 +1,10 @@
 .btn {
-  font-size: 13px;
-  width: 100px;
+  font-size: 16px;
+  --padding-start: 25px;
+  --padding-end: 25px;
   --background: #24ad20;
   --background-activated: #24ad20;
+  --color: #fff!important;
 }
 
 .foot-price {
