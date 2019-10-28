@@ -27,8 +27,8 @@ export class PayOrderPage implements OnInit {
     adminPhone: string;
 
     orders: any = [];
-    subject: any = '';
-    body: any = '';
+    subject: any = '盈垦商品付款';
+    body: any = '盈垦-商品付款';
     sum: any = 0;
 
     hasPay = false;
@@ -117,8 +117,8 @@ export class PayOrderPage implements OnInit {
         for (let i = 0; i < orders.length; i++) {
             p += (orders[i].num ? orders[i].num : 0) * orders[i].product.price;
 
-            this.subject += orders[i].product.name + ' ';
-            this.body += orders[i].product.name + 'x' + orders[i].num + ' ';
+            // this.subject += '盈垦商品付款';
+            // this.body = '盈垦商品付款';
         }
         this.sum = p.toFixed(2);
     }
@@ -247,8 +247,8 @@ export class PayOrderPage implements OnInit {
             attach: self.subject, // 订单标题
             body: self.body, // 订单描述
             out_trade_no: self.sn, // 订单号
-            // total_fee: self.sum, // 订单金额
-            total_fee: 0.01, // 订单金额
+            total_fee: self.sum, // 订单金额
+            // total_fee: 0.01, // 订单金额
         };
         this.payService.creatWxpayOrder(params, openid).subscribe(
             async res => {
